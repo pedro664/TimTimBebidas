@@ -12,25 +12,19 @@ dist
 dist-ssr
 *.local
 
-# Environment variables - NUNCA COMMITAR
+# Environment variables
 .env
 .env.local
 .env.*.local
-.env.production
-.env.development
-*.env
 
 # Firebase Service Account Keys
 serviceAccountKey.json
 scripts/serviceAccountKey.json
 
-# Arquivos com informações sensíveis
+# Arquivos com senhas e dados pessoais sensíveis
 ADMIN_ACCESS.md
 **/credentials/**
 **/secrets/**
-**/*secret*
-**/*password*
-**/*credential*
 
 # Editor directories and files
 .vscode/*
