@@ -26,6 +26,11 @@ ADMIN_ACCESS.md
 **/credentials/**
 **/secrets/**
 
+# Arquivos de documentação (exceto README.md)
+*.md
+!README.md
+!scripts/README.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
