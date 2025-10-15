@@ -1,0 +1,18 @@
+# Tests
+src/__tests__
+**/*.test.ts
+**/*.test.tsx
+vitest.config.ts
+
+# Documentation
+.kiro
+*.md
+!README.md
+!DEPLOY.md
+
+# Scripts
+scripts/*.sql
+scripts/README.md
+
+# Development
+.env.example

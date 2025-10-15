@@ -1,0 +1,1260 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 60% 45%;
+
+    --secondary: 0 60% 45%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 70% 35%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 0 60% 45%;
+
+    --radius: 0rem;
+
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 5%) 0%, hsl(0 0% 2%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 8%) 0%, hsl(0 0% 4%) 100%);
+    --gradient-wine: linear-gradient(135deg, hsl(0 60% 45%) 0%, hsl(0 70% 35%) 100%);
+    --shadow-premium: 0 25px 70px -20px hsl(0 60% 45% / 0.3);
+    --shadow-card: 0 10px 40px -10px hsl(0 0% 0% / 0.5);
+    --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Admin Panel Colors - Dark Theme matching site */
+    --admin-background: 0 0% 3%;
+    --admin-foreground: 0 0% 98%;
+    --admin-card: 0 0% 6%;
+    --admin-card-hover: 0 0% 8%;
+    --admin-primary: 0 60% 45%;
+    --admin-primary-hover: 0 70% 35%;
+    --admin-border: 0 0% 15%;
+    --admin-border-hover: 0 60% 45%;
+    --admin-text: 0 0% 98%;
+    --admin-text-muted: 0 0% 65%;
+    --admin-success: 120 60% 45%;
+    --admin-warning: 45 100% 50%;
+    --admin-error: 0 84% 60%;
+    
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 60% 45%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 8%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 60% 45%;
+
+    /* ===== TABLET DESIGN TOKENS ===== */
+    
+    /* Spacing Tokens */
+    --tablet-spacing-xs: 0.5rem;      /* 8px */
+    --tablet-spacing-sm: 0.75rem;     /* 12px */
+    --tablet-spacing-md: 1rem;        /* 16px */
+    --tablet-spacing-lg: 1.5rem;      /* 24px */
+    --tablet-spacing-xl: 2rem;        /* 32px */
+    --tablet-spacing-2xl: 2.5rem;     /* 40px */
+    --tablet-spacing-3xl: 3rem;       /* 48px */
+    --tablet-spacing-4xl: 3.5rem;     /* 56px */
+    --tablet-spacing-5xl: 4rem;       /* 64px */
+    --tablet-spacing-6xl: 4.5rem;     /* 72px */
+
+    /* Container Padding */
+    --tablet-container-padding-portrait: 1.5rem;   /* 24px */
+    --tablet-container-padding-landscape: 2rem;    /* 32px */
+
+    /* Section Padding */
+    --tablet-section-padding-vertical: 3.5rem;     /* 56px */
+    --tablet-section-padding-vertical-large: 4.5rem; /* 72px */
+
+    /* Card Spacing */
+    --tablet-card-padding: 1.25rem;   /* 20px */
+    --tablet-card-gap: 1.5rem;        /* 24px */
+
+    /* Touch Targets */
+    --tablet-touch-min: 44px;
+    --tablet-touch-recommended: 48px;
+    --tablet-touch-large: 52px;
+
+    /* Typography - Portrait (768px-900px) */
+    --tablet-portrait-h1: 2.5rem;     /* 40px */
+    --tablet-portrait-h2: 2rem;       /* 32px */
+    --tablet-portrait-h3: 1.5rem;     /* 24px */
+    --tablet-portrait-h4: 1.25rem;    /* 20px */
+    --tablet-portrait-body: 1rem;     /* 16px */
+    --tablet-portrait-body-large: 1.125rem; /* 18px */
+    --tablet-portrait-small: 0.875rem;      /* 14px */
+    --tablet-portrait-tiny: 0.75rem;        /* 12px */
+
+    /* Typography - Landscape (901px-1023px) */
+    --tablet-landscape-h1: 3rem;      /* 48px */
+    --tablet-landscape-h2: 2.5rem;    /* 40px */
+    --tablet-landscape-h3: 1.75rem;   /* 28px */
+    --tablet-landscape-h4: 1.25rem;   /* 20px */
+    --tablet-landscape-body: 1rem;    /* 16px */
+    --tablet-landscape-body-large: 1.125rem; /* 18px */
+    --tablet-landscape-small: 0.875rem;      /* 14px */
+    --tablet-landscape-tiny: 0.75rem;        /* 12px */
+
+    /* Line Heights */
+    --tablet-line-height-tight: 1.25;
+    --tablet-line-height-normal: 1.5;
+    --tablet-line-height-relaxed: 1.7;
+
+    /* Transitions for Touch */
+    --tablet-transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --tablet-transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Grid Columns */
+    --tablet-grid-portrait-columns: 2;
+    --tablet-grid-landscape-columns: 3;
+  }
+
+  .dark {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 10%;
+    --primary-foreground: 0 60% 45%;
+
+    --secondary: 0 60% 45%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 0 70% 35%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 12%;
+    --ring: 0 60% 45%;
+
+    /* Admin Panel Colors - Dark Mode (if needed) */
+    --admin-background: 0 0% 3%;
+    --admin-foreground: 0 0% 98%;
+    --admin-card: 0 0% 6%;
+    --admin-card-hover: 0 60% 10%;
+    --admin-primary: 0 60% 45%;
+    --admin-primary-hover: 0 70% 35%;
+    --admin-border: 0 0% 15%;
+    --admin-border-hover: 0 60% 20%;
+    --admin-text: 0 0% 98%;
+    --admin-text-muted: 0 0% 65%;
+    --admin-success: 120 60% 45%;
+    --admin-warning: 45 100% 50%;
+    --admin-error: 0 84% 60%;
+    
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 0 60% 45%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 60% 45%;
+  }
+}
+
+@layer base {
+  /* Font loading optimization with font-display: swap */
+  @font-face {
+    font-family: 'EB Garamond';
+    font-display: swap;
+    src: local('EB Garamond'), local('Garamond');
+  }
+
+  @font-face {
+    font-family: 'Gill Sans';
+    font-display: swap;
+    src: local('Gill Sans'), local('Gill Sans MT'), local('Calibri');
+  }
+
+  * {
+    @apply border-border;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', sans-serif;
+    border-radius: 0 !important;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+    font-family: 'EB Garamond', 'Garamond', serif;
+  }
+
+  input,
+  textarea,
+  select {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', sans-serif;
+  }
+
+  .text-secondary,
+  span.text-secondary,
+  .wine-text {
+    font-family: 'EB Garamond', 'Garamond', serif !important;
+  }
+
+  nav > div > div > a,
+  nav > div > div > div > a {
+    font-family: 'EB Garamond', 'Garamond', serif !important;
+  }
+
+  /* Footer links devem usar Gill Sans - MÁXIMA PRIORIDADE */
+  footer a,
+  footer a:hover,
+  footer a:focus,
+  footer a:active,
+  footer a:visited,
+  footer a:link,
+  footer a *,
+  footer a:hover *,
+  footer a:focus *,
+  footer a:active *,
+  footer a:visited *,
+  footer a:link *,
+  footer a span,
+  footer a:hover span,
+  footer a:focus span,
+  footer a:active span {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', sans-serif !important;
+    transition: color 0.3s ease !important;
+  }
+
+  /* Garantir que dropdowns usem Gill Sans em todos os estados */
+  [role="menu"],
+  [role="menu"] *,
+  [role="menuitem"],
+  [role="menuitem"] *,
+  [data-radix-popper-content-wrapper],
+  [data-radix-popper-content-wrapper] *,
+  [role="menu"]:hover,
+  [role="menu"] *:hover,
+  [role="menuitem"]:hover,
+  [role="menuitem"] *:hover,
+  [data-radix-popper-content-wrapper]:hover,
+  [data-radix-popper-content-wrapper] *:hover {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', sans-serif !important;
+  }
+}
+
+@layer components {
+  /* BLOQUEIO ABSOLUTO: Forçar fontes em todos os estados possíveis */
+  h1, h1:hover, h1:focus, h1:active, h1 *,
+  h2, h2:hover, h2:focus, h2:active, h2 *,
+  h3, h3:hover, h3:focus, h3:active, h3 *,
+  h4, h4:hover, h4:focus, h4:active, h4 *,
+  h5, h5:hover, h5:focus, h5:active, h5 *,
+  h6, h6:hover, h6:focus, h6:active, h6 *,
+  .font-heading, .font-heading:hover, .font-heading:focus, .font-heading * {
+    font-family: 'EB Garamond', 'Garamond', serif !important;
+  }
+
+  /* Forçar Gill Sans em botões e outros elementos */
+  button, button:hover, button:focus, button:active, button:active:hover, button *,
+  p, p:hover, p:focus, p:active, p *,
+  span:not(.text-secondary), span:not(.text-secondary):hover, span:not(.text-secondary):focus, span:not(.text-secondary):active,
+  div:not(.font-heading), div:not(.font-heading):hover, div:not(.font-heading):focus, div:not(.font-heading):active,
+  a:not(.font-heading), a:not(.font-heading):hover, a:not(.font-heading):focus, a:not(.font-heading):active,
+  .font-body, .font-body:hover, .font-body:focus, .font-body:active, .font-body * {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', sans-serif !important;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* BLOQUEIO TOTAL: Nenhum elemento pode mudar font-family ou font-weight em qualquer estado */
+  * {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter !important;
+  }
+
+  /* BLOQUEIO ESPECÍFICO: Footer email link nunca muda fonte */
+  footer a[href^="mailto"],
+  footer a[href^="mailto"]:hover,
+  footer a[href^="mailto"]:focus,
+  footer a[href^="mailto"]:active,
+  footer a[href^="mailto"] *,
+  footer a[href^="mailto"]:hover *,
+  footer a[href^="mailto"]:focus *,
+  footer a[href^="mailto"]:active * {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', sans-serif !important;
+    font-weight: 400 !important;
+  }
+
+  /* Remover X padrão do navegador em inputs de busca */
+  input[type="search"]::-webkit-search-cancel-button {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  /* Para Firefox */
+  input[type="search"]::-moz-search-cancel-button {
+    display: none;
+  }
+
+  /* Para IE/Edge */
+  input[type="search"]::-ms-clear {
+    display: none;
+  }
+
+  /* Forçar Gill Sans em TODOS os botões em TODOS os estados - MÁXIMA PRIORIDADE */
+  button,
+  button *,
+  button::before,
+  button::after,
+  button:hover,
+  button:hover *,
+  button:hover::before,
+  button:hover::after,
+  button:focus,
+  button:focus *,
+  button:active,
+  button:active *,
+  [role="button"],
+  [role="button"] *,
+  [role="button"]:hover,
+  [role="button"]:hover *,
+  .font-body,
+  .font-body *,
+  .font-body:hover,
+  .font-body:hover *,
+  body:not(:hover) button,
+  body:not(:hover) button *,
+  body:not(:hover) .font-body,
+  body:not(:hover) .font-body * {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', sans-serif !important;
+    font-weight: 400 !important;
+  }
+  
+  /* Sobrescrever qualquer classe que tente mudar para Garamond */
+  button.font-heading,
+  button .font-heading,
+  button:hover.font-heading,
+  button:hover .font-heading {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', sans-serif !important;
+  }
+
+  /* BLOQUEIO MOBILE - Garantir Gill Sans em touch/active states */
+  @media (hover: none) and (pointer: coarse) {
+    *, *:hover, *:active, *:focus {
+      font-family: inherit !important;
+    }
+    
+    button, button *, button:active, button:active *,
+    .font-body, .font-body *, .font-body:active, .font-body:active *,
+    [role="button"], [role="button"] *, [role="button"]:active, [role="button"]:active * {
+      font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', sans-serif !important;
+    }
+    
+    .font-heading, .font-heading *, .font-heading:active, .font-heading:active *,
+    h1, h2, h3, h4, h5, h6,
+    h1 *, h2 *, h3 *, h4 *, h5 *, h6 * {
+      font-family: 'EB Garamond', 'Garamond', serif !important;
+    }
+  }
+
+  /* BLOQUEIO ULTRA FORTE - Nenhum botão pode mudar fonte NUNCA */
+  button[class*="font"],
+  button[class*="font"]:hover,
+  button[class*="font"]:focus,
+  button[class*="font"]:active,
+  button[class*="font"]:active,
+  button[class*="font"] *,
+  button[class*="font"]:hover *,
+  a button,
+  a button:hover,
+  a button:focus,
+  a button *,
+  a button:hover *,
+  a:hover button,
+  a:hover button * {
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', sans-serif !important;
+    font-weight: 400 !important;
+  }
+
+  /* Garantir que font-weight nunca mude */
+  *,
+  *:hover,
+  *:focus,
+  *:active {
+    font-weight: inherit !important;
+  }
+
+  /* Forçar font-weight normal em botões */
+  button,
+  button:hover,
+  button:focus,
+  button:active,
+  .font-body,
+  .font-body:hover {
+    font-weight: 400 !important;
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .gradient-wine {
+    background: var(--gradient-wine);
+  }
+
+  .shadow-premium {
+    box-shadow: var(--shadow-premium);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-fast {
+    transition: var(--transition-fast);
+  }
+
+  .hover-lift {
+    @apply transition-smooth hover:-translate-y-3 hover:shadow-premium;
+  }
+
+  .hover-glow {
+    @apply transition-smooth;
+  }
+
+  .hover-glow:hover {
+    filter: drop-shadow(0 0 25px hsl(var(--secondary) / 0.4));
+  }
+
+  /* Enhanced button hover effects */
+  .button-hover-scale {
+    @apply transition-fast;
+  }
+
+  .button-hover-scale:hover:not(:disabled) {
+    transform: scale(1.02);
+  }
+
+  .button-hover-scale:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  /* Pulse animation for loading states */
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 0 0 hsl(var(--secondary) / 0.4);
+    }
+    50% {
+      opacity: 0.9;
+      box-shadow: 0 0 20px 5px hsl(var(--secondary) / 0.2);
+    }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Shimmer effect for skeleton loaders */
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--muted)) 0%,
+      hsl(var(--muted) / 0.5) 50%,
+      hsl(var(--muted)) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .glass-effect {
+    @apply bg-card/40 backdrop-blur-xl border border-border/50;
+  }
+
+  .wine-text {
+    @apply text-transparent bg-clip-text;
+    background-image: var(--gradient-wine);
+  }
+
+  .premium-border {
+    position: relative;
+  }
+
+  .premium-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--gradient-wine);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Touch-friendly spacing */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+  
+  /* Prevent text selection on touch */
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Safe area padding for notched devices */
+  .safe-padding {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .safe-padding-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-padding-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-padding-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-padding-right {
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  /* Smooth scrolling */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Touch device optimizations */
+  .touch-action-none {
+    touch-action: none;
+  }
+
+  .touch-action-pan-x {
+    touch-action: pan-x;
+  }
+
+  .touch-action-pan-y {
+    touch-action: pan-y;
+  }
+
+  /* Screen reader only - hide visually but keep for screen readers */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Make sr-only elements visible when focused */
+  .sr-only:focus,
+  .sr-only:active {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Not screen reader only - opposite of sr-only */
+  .not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* Prevent horizontal overflow */
+  .no-overflow-x {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* CSS Containment for performance optimization */
+  .contain-layout {
+    contain: layout;
+  }
+
+  .contain-paint {
+    contain: paint;
+  }
+
+  .contain-content {
+    contain: content;
+  }
+
+  .contain-strict {
+    contain: strict;
+  }
+
+  /* Product card optimization with CSS containment */
+  .product-card-optimized {
+    contain: layout style paint;
+  }
+
+  /* Carousel optimization */
+  .carousel-slide {
+    contain: layout style;
+  }
+
+  /* ===== FIX: Notificações não devem afetar layout ===== */
+  
+  /* Garantir que elementos de notificação/toast não empurrem conteúdo */
+  [aria-label*="Notifications"],
+  [aria-live="polite"],
+  [data-sonner-toaster],
+  [data-toast-viewport] {
+    position: fixed !important;
+    pointer-events: none !important;
+    z-index: 9999 !important;
+  }
+
+  /* ===== ACCESSIBILITY: FOCUS STYLES ===== */
+  
+  /* Focus visible para todos os elementos interativos */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--secondary));
+    outline-offset: 2px;
+  }
+
+  /* Focus para links */
+  a:focus-visible {
+    outline: 2px solid hsl(var(--secondary));
+    outline-offset: 2px;
+  }
+
+  /* Focus para botões */
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    outline: 2px solid hsl(var(--secondary));
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px hsl(var(--secondary) / 0.2);
+  }
+
+  /* Focus para inputs */
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid hsl(var(--secondary));
+    outline-offset: 0px;
+    border-color: hsl(var(--secondary));
+  }
+
+  /* Focus para elementos de navegação */
+  nav a:focus-visible {
+    outline: 2px solid hsl(var(--secondary));
+    outline-offset: 4px;
+  }
+
+  /* Focus para cards clicáveis */
+  .product-card-optimized:focus-within {
+    outline: 2px solid hsl(var(--secondary));
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px hsl(var(--secondary) / 0.2);
+  }
+
+  /* Focus para dropdown triggers */
+  [role="combobox"]:focus-visible,
+  [role="menu"]:focus-visible,
+  [role="menuitem"]:focus-visible {
+    outline: 2px solid hsl(var(--secondary));
+    outline-offset: 2px;
+  }
+
+  /* Remover outline padrão apenas quando focus-visible não é suportado */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Garantir que o foco é sempre visível em elementos interativos */
+  button:focus,
+  a:focus,
+  input:focus,
+  textarea:focus,
+  select:focus,
+  [tabindex]:focus {
+    outline: 2px solid hsl(var(--secondary));
+    outline-offset: 2px;
+  }
+
+  /* Melhorar visibilidade do foco em elementos escuros */
+  .bg-card button:focus-visible,
+  .bg-card a:focus-visible {
+    outline-color: hsl(var(--secondary));
+    box-shadow: 0 0 0 4px hsl(var(--secondary) / 0.3);
+  }
+
+  /* ===== ADMIN PANEL UTILITIES ===== */
+  
+  /* Admin background colors */
+  .admin-bg {
+    background-color: hsl(var(--admin-background));
+  }
+  
+  .admin-card-bg {
+    background-color: hsl(var(--admin-card));
+  }
+  
+  /* Admin text colors */
+  .admin-text {
+    color: hsl(var(--admin-text));
+  }
+  
+  .admin-text-muted {
+    color: hsl(var(--admin-text-muted));
+  }
+  
+  /* Admin borders */
+  .admin-border {
+    border-color: hsl(var(--admin-border));
+  }
+  
+  /* Admin card with brand colors */
+  .admin-card {
+    @apply bg-white border transition-all duration-200;
+    border-color: hsl(var(--admin-border));
+  }
+  
+  .admin-card:hover {
+    border-color: hsl(var(--admin-border-hover));
+    box-shadow: 0 4px 12px hsl(var(--admin-primary) / 0.1);
+  }
+  
+  /* Admin card with gradient accent */
+  .admin-card-gradient {
+    @apply admin-card;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .admin-card-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-wine);
+  }
+  
+  /* Admin icon with brand colors */
+  .admin-icon-primary {
+    color: hsl(var(--admin-primary));
+  }
+  
+  .admin-icon-success {
+    color: hsl(var(--admin-success));
+  }
+  
+  .admin-icon-warning {
+    color: hsl(var(--admin-warning));
+  }
+  
+  /* Admin badge styles */
+  .admin-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 text-xs font-medium transition-colors;
+  }
+  
+  .admin-badge-primary {
+    @apply admin-badge;
+    background-color: hsl(var(--admin-primary) / 0.1);
+    color: hsl(var(--admin-primary));
+  }
+  
+  .admin-badge-success {
+    @apply admin-badge;
+    background-color: hsl(var(--admin-success) / 0.1);
+    color: hsl(var(--admin-success));
+  }
+  
+  .admin-badge-warning {
+    @apply admin-badge;
+    background-color: hsl(var(--admin-warning) / 0.1);
+    color: hsl(var(--admin-warning));
+  }
+  
+  /* Admin button with gradient */
+  .admin-button-gradient {
+    @apply gradient-wine text-white font-medium px-4 py-2 transition-all duration-200;
+  }
+  
+  .admin-button-gradient:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px hsl(var(--admin-primary) / 0.3);
+  }
+  
+  .admin-button-gradient:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVIDADE: TABLETS (768px - 1023px) ===== */
+  /* Tablets devem usar layout de DESKTOP, exceto navbar e hero */
+  
+  /* ===== TABLET PORTRAIT: 768px - 900px ===== */
+  @media (min-width: 768px) and (max-width: 900px) {
+    /* Container - usar layout desktop */
+    .container {
+      max-width: 1200px !important;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== HERO SECTION - TABLET PORTRAIT (mantém estilo tablet) ===== */
+    
+    /* Hero Background - Garantir cobertura completa */
+    .hero-background {
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
+
+    /* Hero Title - 2.5rem com line-height 1.1 */
+    .hero-title {
+      font-size: 2.5rem !important;
+      line-height: 1.1 !important;
+      margin-bottom: 1.5rem !important;
+    }
+
+    /* Hero Subtitle - 1.25rem com line-height 1.6 */
+    .hero-subtitle {
+      font-size: 1.25rem !important;
+      line-height: 1.6 !important;
+      margin-bottom: 2.5rem !important;
+    }
+
+    /* Hero Buttons - altura 52px, padding 2rem */
+    .hero-button {
+      min-height: 52px !important;
+      height: 52px !important;
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+      font-size: 0.9375rem !important;
+    }
+
+    /* Hero Buttons Container - gap 1rem */
+    .hero-buttons {
+      gap: 1rem !important;
+    }
+
+    /* Product Grid - 2 colunas como mobile */
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 1rem !important;
+    }
+    
+    /* Product Card Typography - tablet */
+    .product-card-optimized h3 {
+      font-size: 1rem !important;
+      line-height: 1.4 !important;
+    }
+    
+    .product-card-optimized .price-text {
+      font-size: 1.875rem !important;
+    }
+    
+    /* Product Card Button - desktop */
+    .product-card-optimized button {
+      min-height: 48px !important;
+      height: 48px !important;
+      font-size: 1rem !important;
+    }
+
+    /* Footer - layout desktop com 4 colunas */
+    footer .grid {
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 2rem !important;
+    }
+
+    /* Carousel - altura desktop */
+    .carousel-slide {
+      min-height: 500px !important;
+    }
+  }
+
+  /* ===== TABLET LANDSCAPE: 901px - 1023px ===== */
+  @media (min-width: 901px) and (max-width: 1023px) {
+    /* Container - usar layout desktop */
+    .container {
+      max-width: 1200px !important;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== HERO SECTION - TABLET LANDSCAPE (mantém estilo tablet) ===== */
+    
+    /* Hero Background - Garantir cobertura completa */
+    .hero-background {
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+    }
+
+    /* Hero Title - 3rem com line-height 1.1 */
+    .hero-title {
+      font-size: 3rem !important;
+      line-height: 1.1 !important;
+      margin-bottom: 1.5rem !important;
+    }
+
+    /* Hero Subtitle - 1.5rem com line-height 1.6 */
+    .hero-subtitle {
+      font-size: 1.5rem !important;
+      line-height: 1.6 !important;
+      margin-bottom: 2.5rem !important;
+    }
+
+    /* Hero Buttons - altura 52px, padding 2rem */
+    .hero-button {
+      min-height: 52px !important;
+      height: 52px !important;
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+      font-size: 1rem !important;
+    }
+
+    /* Hero Buttons Container - gap 1rem */
+    .hero-buttons {
+      gap: 1rem !important;
+    }
+
+    /* Product Grid - 2 colunas como mobile */
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 1rem !important;
+    }
+    
+    /* Product Card Typography - tablet landscape */
+    .product-card-optimized h3 {
+      font-size: 1.125rem !important;
+      line-height: 1.4 !important;
+    }
+    
+    .product-card-optimized .price-text {
+      font-size: 1.875rem !important;
+    }
+    
+    /* Product Card Button - desktop */
+    .product-card-optimized button {
+      min-height: 48px !important;
+      height: 48px !important;
+      font-size: 1rem !important;
+    }
+
+    /* Footer - layout desktop com 4 colunas */
+    footer .grid {
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 2rem !important;
+    }
+
+    /* Carousel - altura desktop */
+    .carousel-slide {
+      min-height: 500px !important;
+    }
+  }
+
+  /* ===== TABLET GENERAL: 768px - 1023px (Both Portrait & Landscape) ===== */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    /* Prevent horizontal overflow */
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    /* Images responsive */
+    img:not(nav img) {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Touch optimizations */
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Hover effects - usar estilo desktop */
+    .hover-lift:hover {
+      transform: translateY(-12px) !important;
+    }
+
+    /* Product card hover - estilo desktop */
+    .product-card-optimized:hover {
+      transform: translateY(-12px) !important;
+    }
+
+    /* Focus visible for keyboard navigation */
+    *:focus-visible {
+      outline: 2px solid hsl(var(--secondary));
+      outline-offset: 2px;
+    }
+
+    /* Prevent zoom on input focus (iOS) */
+    input:focus,
+    textarea:focus,
+    select:focus {
+      font-size: 16px !important;
+    }
+  }
+
+  /* ===== RESPONSIVIDADE: LAPTOPS PEQUENOS (1024px - 1279px) ===== */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    /* Container com max-width otimizado */
+    .container {
+      max-width: 960px;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    /* Tipografia ajustada */
+    h1 {
+      font-size: 3rem !important;
+      line-height: 1.2 !important;
+    }
+
+    h2 {
+      font-size: 2.5rem !important;
+      line-height: 1.25 !important;
+    }
+
+    h3 {
+      font-size: 1.75rem !important;
+      line-height: 1.3 !important;
+    }
+
+    /* Botões com padding adequado */
+    button,
+    .button {
+      padding-left: 1.75rem !important;
+      padding-right: 1.75rem !important;
+    }
+  }
+
+  /* ===== OTIMIZAÇÕES GERAIS PARA TELAS MÉDIAS ===== */
+  @media (min-width: 768px) and (max-width: 1279px) {
+    /* Otimizar imagens */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Inputs e selects com tamanho adequado */
+    input,
+    select,
+    textarea {
+      min-height: 44px !important;
+      font-size: 1rem !important;
+    }
+
+    /* Links com área de toque adequada */
+    a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+
+}
+
+
+/* ===== ADMIN PANEL UTILITIES ===== */
+@layer utilities {
+  /* Admin Background */
+  .admin-bg {
+    background-color: hsl(var(--admin-background));
+    color: hsl(var(--admin-foreground));
+  }
+
+  /* Admin Card */
+  .admin-card {
+    background-color: hsl(var(--admin-card));
+    border-color: hsl(var(--admin-border));
+    color: hsl(var(--admin-text));
+  }
+
+  .admin-card-bg {
+    background-color: hsl(var(--admin-card));
+  }
+
+  .admin-card:hover {
+    background-color: hsl(var(--admin-card-hover));
+  }
+
+  /* Admin Border */
+  .admin-border {
+    border-color: hsl(var(--admin-border));
+  }
+
+  .admin-border:hover {
+    border-color: hsl(var(--admin-border-hover));
+  }
+
+  /* Admin Text */
+  .admin-text {
+    color: hsl(var(--admin-text));
+  }
+
+  .admin-text-muted {
+    color: hsl(var(--admin-text-muted));
+  }
+
+  /* Admin Primary */
+  .admin-primary {
+    background-color: hsl(var(--admin-primary));
+    color: hsl(var(--sidebar-primary-foreground));
+  }
+
+  .admin-primary:hover {
+    background-color: hsl(var(--admin-primary-hover));
+  }
+
+  /* Admin Icon Colors */
+  .admin-icon-primary {
+    color: hsl(var(--admin-primary));
+  }
+
+  .admin-icon-primary:hover {
+    color: hsl(var(--admin-primary-hover));
+  }
+
+  /* Admin Input */
+  .admin-input {
+    background-color: hsl(var(--admin-card));
+    border-color: hsl(var(--admin-border));
+    color: hsl(var(--admin-text));
+  }
+
+  .admin-input:focus {
+    border-color: hsl(var(--admin-primary));
+    ring-color: hsl(var(--admin-primary));
+  }
+
+  /* Admin Button */
+  .admin-button {
+    background-color: hsl(var(--admin-primary));
+    color: hsl(var(--sidebar-primary-foreground));
+    border: 1px solid hsl(var(--admin-primary));
+  }
+
+  .admin-button:hover {
+    background-color: hsl(var(--admin-primary-hover));
+    border-color: hsl(var(--admin-primary-hover));
+  }
+
+  /* Admin Status Colors */
+  .admin-success {
+    color: hsl(var(--admin-success));
+  }
+
+  .admin-warning {
+    color: hsl(var(--admin-warning));
+  }
+
+  .admin-error {
+    color: hsl(var(--admin-error));
+  }
+}
