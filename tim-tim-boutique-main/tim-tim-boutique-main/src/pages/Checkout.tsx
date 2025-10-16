@@ -9,7 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { MessageCircle, ArrowLeft, ChevronDown, ChevronUp, Loader2, MapPin, Truck } from "lucide-react";
+import { MessageCircle, ArrowLeft, Loader2, MapPin, Truck } from "lucide-react";
 import { checkoutSchema, type CheckoutFormData } from "@/lib/validations";
 import { fetchAddressByCep } from "@/services/cepService";
 import { maskCep, maskPhone } from "@/lib/masks";
@@ -20,7 +20,6 @@ const Checkout = () => {
   const { items, total, itemCount, clearCart, shipping, grandTotal } = useCart();
   const navigate = useNavigate();
 
-  const [isOrderSummaryExpanded, setIsOrderSummaryExpanded] = useState(false);
   const [isLoadingCep, setIsLoadingCep] = useState(false);
 
   // Initialize React Hook Form with Zod validation and real-time validation
@@ -57,18 +56,18 @@ const Checkout = () => {
     const isTouched = touchedFields[fieldName];
     const isDirty = dirtyFields[fieldName];
     const fieldValue = watch(fieldName);
-    
+
     // Show valid state only if field has value, is touched/dirty, and has no errors
     const isValid = !hasError && (isTouched || isDirty) && fieldValue && fieldValue.length > 0;
-    
+
     return {
       hasError,
       isValid,
-      className: hasError 
-        ? "border-destructive focus-visible:ring-destructive" 
-        : isValid 
-        ? "border-green-500 focus-visible:ring-green-500" 
-        : ""
+      className: hasError
+        ? "border-destructive focus-visible:ring-destructive"
+        : isValid
+          ? "border-green-500 focus-visible:ring-green-500"
+          : ""
     };
   };
 
@@ -90,7 +89,7 @@ const Checkout = () => {
       if (cleanCep.length === 8) {
         setIsLoadingCep(true);
         const addressData = await fetchAddressByCep(cleanCep);
-        
+
         if (addressData) {
           setValue("address", addressData.street);
           setValue("neighborhood", addressData.neighborhood);
@@ -213,12 +212,12 @@ const Checkout = () => {
 
         <h1 className="font-heading text-2xl md:text-3xl lg:text-4xl mb-6 md:mb-8">Finalizar Compra</h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 pb-20 lg:pb-0">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Checkout Form */}
-          <form onSubmit={handleSubmit(onSubmit)} className="lg:col-span-2">
+          <form onSubmit={handleSubmit(onSubmit)} className="lg:col-span-2 space-y-4 md:space-y-6">
             {/* Warning if shipping not calculated */}
             {(!shipping || !shipping.isValid) && (
-              <Card className="p-4 md:p-6 bg-secondary/5 border-secondary/20 mb-4 md:mb-6">
+              <Card className="p-4 md:p-6 bg-secondary/5 border-secondary/20">
                 <div className="flex items-start gap-3">
                   <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
                     <Truck className="h-5 w-5 text-secondary" />
@@ -245,7 +244,7 @@ const Checkout = () => {
               </Card>
             )}
 
-            <Card className="p-4 md:p-6 bg-card border-border mb-4 md:mb-6">
+            <Card className="p-4 md:p-6 bg-card border-border">
               <h2 className="font-heading text-xl md:text-2xl mb-4 md:mb-6">Dados Pessoais</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
@@ -390,7 +389,7 @@ const Checkout = () => {
                     </p>
                   )}
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <div className="md:col-span-3">
                     <Label htmlFor="address" className="text-base md:text-sm">Endereço *</Label>
@@ -548,9 +547,7 @@ const Checkout = () => {
                       </p>
                     )}
                     {!errors.state && (
-                      <p id="state-help" className="text-xs text-muted-foreground mt-1">
-          
-                      </p>
+                      <p id="state-help" className="text-xs text-muted-foreground mt-1"></p>
                     )}
                   </div>
                 </div>
@@ -558,41 +555,11 @@ const Checkout = () => {
             </Card>
           </form>
 
-          {/* Order Summary - Collapsible on mobile, static on desktop */}
+          {/* Order Summary */}
           <div className="lg:col-span-1">
-            <Card className="p-0 bg-card border-border fixed bottom-0 left-0 right-0 lg:static z-40 rounded-t-lg lg:rounded-lg border-t lg:border shadow-lg lg:shadow-none">
-              {/* Mobile Header - Collapsible */}
-              <button
-                type="button"
-                onClick={() => setIsOrderSummaryExpanded(!isOrderSummaryExpanded)}
-                className="w-full flex items-center justify-between p-4 lg:hidden border-b border-border"
-              >
-                <div className="flex items-center gap-3">
-                  <h2 className="font-heading text-lg">Resumo do Pedido</h2>
-                  <span className="text-sm text-muted-foreground">
-                    ({itemCount} {itemCount === 1 ? 'item' : 'itens'})
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="font-heading text-base text-secondary">
-                    R$ {shipping && shipping.isValid ? grandTotal.toFixed(2) : total.toFixed(2)}
-                  </span>
-                  {isOrderSummaryExpanded ? (
-                    <ChevronDown className="h-5 w-5" />
-                  ) : (
-                    <ChevronUp className="h-5 w-5" />
-                  )}
-                </div>
-              </button>
-
-              {/* Desktop Header - Always visible */}
-              <div className="hidden lg:block p-6 pb-4">
-                <h2 className="font-heading text-2xl">Resumo do Pedido</h2>
-              </div>
-
-              {/* Collapsible Content */}
-              <div className={`${isOrderSummaryExpanded ? 'block' : 'hidden'} lg:block p-4 lg:px-6 lg:pt-0 lg:pb-6`}>
-                <div className="space-y-2 md:space-y-3 lg:space-y-4 mb-3 md:mb-4 lg:mb-6 max-h-48 lg:max-h-none overflow-y-auto lg:overflow-visible">
+            <Card className="p-4 md:p-6 bg-card border-border lg:sticky lg:top-24">
+              <h2 className="font-heading text-xl md:text-2xl mb-4 md:mb-6">Resumo do Pedido</h2>
+              <div className="space-y-2 md:space-y-3 mb-3 md:mb-4 lg:mb-6">
                   {items.map((item) => (
                     <div key={item.id} className="flex justify-between text-xs md:text-sm">
                       <span className="text-foreground/90">
@@ -603,11 +570,11 @@ const Checkout = () => {
                       </span>
                     </div>
                   ))}
-                </div>
+              </div>
 
-                <Separator className="my-2 md:my-3 lg:my-4" />
+              <Separator className="my-2 md:my-3 lg:my-4" />
 
-                <div className="space-y-2 md:space-y-3 mb-3 md:mb-4 lg:mb-6">
+              <div className="space-y-2 md:space-y-3 mb-3 md:mb-4 lg:mb-6">
                   <div className="flex justify-between text-xs md:text-sm text-foreground/90">
                     <span>Subtotal ({itemCount} itens)</span>
                     <span>R$ {total.toFixed(2)}</span>
@@ -635,14 +602,14 @@ const Checkout = () => {
                       <span>Entrega em até 2 horas</span>
                     </div>
                   )}
-                </div>
+              </div>
 
-                <Button
+              <Button
                   type="button"
                   size="lg"
                   disabled={isSubmitting || isLoadingCep || !shipping || !shipping.isValid}
                   onClick={handleSubmit(onSubmit)}
-                  className="w-full h-12 lg:h-10 gradient-wine text-white hover:opacity-90 font-semibold text-base lg:text-sm"
+                  className="w-full gradient-wine text-white hover:opacity-90 font-semibold"
                 >
                   {isSubmitting ? (
                     <>
@@ -655,12 +622,11 @@ const Checkout = () => {
                       Finalizar via WhatsApp
                     </>
                   )}
-                </Button>
+              </Button>
 
-                <p className="text-xs text-muted-foreground text-center mt-2 md:mt-3 lg:mt-4">
-                  Você será redirecionado para o WhatsApp para confirmar seu pedido
-                </p>
-              </div>
+              <p className="text-xs text-muted-foreground text-center mt-2 md:mt-3 lg:mt-4">
+                Você será redirecionado para o WhatsApp para confirmar seu pedido
+              </p>
             </Card>
           </div>
         </div>

@@ -135,7 +135,7 @@ const AdminLogin = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@timtimbebidas.com"
+                  placeholder="Digite seu e-mail"
                   className="h-12 md:h-10 text-base md:text-sm"
                   aria-invalid={!!errors.email}
                   aria-describedby={errors.email ? "admin-email-error" : undefined}

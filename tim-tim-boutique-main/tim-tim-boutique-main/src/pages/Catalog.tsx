@@ -129,14 +129,14 @@ const Catalog = () => {
   };
 
   return (
-    <div className="min-h-screen pt-28 md:pt-32 lg:pt-40 pb-12 md:pb-16 lg:pb-20">
-      <div className="container mx-auto px-4 md:px-8 lg:px-6">
+    <div className="min-h-screen pt-28 md:pt-32 lg:pt-36 xl:pt-40 pb-12 md:pb-16 lg:pb-18 xl:pb-20">
+      <div className="container mx-auto px-4 md:px-6 lg:px-6 xl:px-6">
         {/* Header */}
-        <div className="mb-8 md:mb-10 lg:mb-12 text-center">
-          <h1 className="font-heading text-3xl md:text-[2.75rem] lg:text-5xl mb-3 md:mb-4">
+        <div className="mb-8 md:mb-10 lg:mb-10 xl:mb-12 text-center">
+          <h1 className="font-heading text-3xl md:text-[2.5rem] lg:text-[2.75rem] xl:text-5xl mb-3 md:mb-4">
             Nosso Catálogo
           </h1>
-          <p className="text-muted-foreground text-base md:text-[1.05rem] lg:text-lg max-w-xl md:max-w-2xl mx-auto px-4 md:px-0 leading-relaxed">
+          <p className="text-muted-foreground text-base md:text-[1.05rem] lg:text-[1.05rem] xl:text-lg max-w-xl md:max-w-2xl mx-auto px-4 md:px-0 leading-relaxed">
             Explore nossa seleção cuidadosamente curada de bebidas premium de todo o mundo
           </p>
         </div>
@@ -165,10 +165,10 @@ const Catalog = () => {
         </div>
 
         {/* Filters */}
-        <div className="mb-6 md:mb-8 flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 justify-center items-center">
+        <div className="mb-6 md:mb-8 flex flex-col sm:flex-row flex-wrap gap-3 md:gap-3 lg:gap-3 xl:gap-4 justify-center items-center">
           <div className="w-full sm:w-auto">
             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-              <SelectTrigger className="w-full sm:w-[180px] md:w-[220px] lg:w-[200px] h-11 md:h-12 lg:h-10 text-sm md:text-base">
+              <SelectTrigger className="w-full sm:w-[180px] md:w-[200px] lg:w-[180px] xl:w-[200px] h-11 md:h-11 lg:h-10 xl:h-10 text-sm md:text-sm lg:text-sm xl:text-base">
                 <SelectValue placeholder="Categoria" />
               </SelectTrigger>
               <SelectContent>
@@ -184,7 +184,7 @@ const Catalog = () => {
 
           <div className="w-full sm:w-auto">
             <Select value={countryFilter} onValueChange={setCountryFilter}>
-              <SelectTrigger className="w-full sm:w-[180px] md:w-[220px] lg:w-[200px] h-11 md:h-12 lg:h-10 text-sm md:text-base">
+              <SelectTrigger className="w-full sm:w-[180px] md:w-[200px] lg:w-[180px] xl:w-[200px] h-11 md:h-11 lg:h-10 xl:h-10 text-sm md:text-sm lg:text-sm xl:text-base">
                 <SelectValue placeholder="País" />
               </SelectTrigger>
               <SelectContent>
@@ -200,7 +200,7 @@ const Catalog = () => {
 
           <div className="w-full sm:w-auto">
             <Select value={priceRange} onValueChange={setPriceRange}>
-              <SelectTrigger className="w-full sm:w-[180px] md:w-[220px] lg:w-[200px] h-11 md:h-12 lg:h-10 text-sm md:text-base">
+              <SelectTrigger className="w-full sm:w-[180px] md:w-[200px] lg:w-[180px] xl:w-[200px] h-11 md:h-11 lg:h-10 xl:h-10 text-sm md:text-sm lg:text-sm xl:text-base">
                 <SelectValue placeholder="Faixa de Preço" />
               </SelectTrigger>
               <SelectContent>
@@ -215,7 +215,7 @@ const Catalog = () => {
 
           <div className="w-full sm:w-auto">
             <Select value={sortOrder} onValueChange={setSortOrder}>
-              <SelectTrigger className="w-full sm:w-[180px] md:w-[220px] lg:w-[200px] h-11 md:h-12 lg:h-10 text-sm md:text-base">
+              <SelectTrigger className="w-full sm:w-[180px] md:w-[200px] lg:w-[180px] xl:w-[200px] h-11 md:h-11 lg:h-10 xl:h-10 text-sm md:text-sm lg:text-sm xl:text-base">
                 <SelectValue placeholder="Ordenar por" />
               </SelectTrigger>
               <SelectContent>
@@ -230,7 +230,7 @@ const Catalog = () => {
             <Button
               variant="outline"
               onClick={clearAllFilters}
-              className="w-full sm:w-auto h-11 md:h-12 lg:h-10 hover-glow text-sm md:text-[0.95rem] lg:text-sm px-4 md:px-6 lg:px-4"
+              className="w-full sm:w-auto h-11 md:h-11 lg:h-10 xl:h-10 hover-glow text-sm md:text-sm lg:text-sm xl:text-sm px-4 md:px-5 lg:px-4 xl:px-4"
             >
               Limpar Filtros
             </Button>
@@ -251,13 +251,13 @@ const Catalog = () => {
 
         {/* Products Grid */}
         {isLoading ? (
-          <div className="product-grid grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-4 lg:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-4 lg:gap-5 xl:gap-6">
             {Array.from({ length: 8 }).map((_, index) => (
               <ProductCardSkeleton key={index} />
             ))}
           </div>
         ) : filteredProducts.length > 0 ? (
-          <div className="product-grid grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-4 lg:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-4 lg:gap-5 xl:gap-6 auto-rows-fr">
             {filteredProducts.map(product => (
               <ProductCard key={product.id} {...product} />
             ))}

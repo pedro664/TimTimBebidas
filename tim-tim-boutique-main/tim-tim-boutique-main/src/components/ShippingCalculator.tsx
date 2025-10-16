@@ -10,10 +10,10 @@ interface ShippingCalculatorProps {
   className?: string;
 }
 
-export default function ShippingCalculator({ 
-  subtotal, 
+export default function ShippingCalculator({
+  subtotal,
   onShippingCalculated,
-  className = '' 
+  className = ''
 }: ShippingCalculatorProps) {
   const { shipping, setShipping, items } = useCart();
   const [cep, setCep] = useState('');
@@ -31,7 +31,7 @@ export default function ShippingCalculator({
       setCep(shipping.cep || '');
       setShippingCost(shipping.cost);
       setIsFree(shipping.isFree);
-      
+
       // Set result to show the shipping is already calculated
       setResult({
         isValid: true,
@@ -53,7 +53,7 @@ export default function ShippingCalculator({
   const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const masked = maskCep(e.target.value);
     setCep(masked);
-    
+
     // Clear results when user changes CEP (Requirement 6.3)
     if (result) {
       setResult(null);
@@ -66,7 +66,7 @@ export default function ShippingCalculator({
 
   const calculateShipping = async () => {
     const cleanCep = unmask(cep);
-    
+
     // Validate CEP length
     if (cleanCep.length !== 8) {
       setResult({
@@ -82,10 +82,10 @@ export default function ShippingCalculator({
     try {
       // Import calculateShipping from service
       const { calculateShipping: calcShipping } = await import('@/services/shippingService');
-      
+
       // Use the full shipping calculation with weight
       const shippingCalc = await calcShipping(cep, items, subtotal);
-      
+
       if (shippingCalc.isAvailable) {
         setResult({
           isValid: true,
@@ -96,7 +96,7 @@ export default function ShippingCalculator({
             neighborhood: ''
           }
         });
-        
+
         setShippingCost(shippingCalc.cost);
         setIsFree(shippingCalc.isFree);
 
@@ -118,10 +118,10 @@ export default function ShippingCalculator({
           isValid: false,
           error: shippingCalc.message
         });
-        
+
         setShippingCost(0);
         setIsFree(false);
-        
+
         // Save invalid shipping to session
         setShipping({
           cost: 0,
@@ -130,7 +130,7 @@ export default function ShippingCalculator({
           cep,
           isValid: false
         });
-        
+
         if (onShippingCalculated) {
           onShippingCalculated(0, false, undefined, cep);
         }
@@ -138,12 +138,12 @@ export default function ShippingCalculator({
     } catch (error) {
       console.error('Error calculating shipping:', error);
       const errorMessage = error instanceof Error ? error.message : 'Erro ao calcular frete';
-      
+
       setResult({
         isValid: false,
         error: errorMessage
       });
-      
+
       // Show toast with retry option
       import('sonner').then(({ toast }) => {
         toast.error('Erro ao calcular frete', {
@@ -168,12 +168,12 @@ export default function ShippingCalculator({
 
   return (
     <div className={`shipping-calculator ${className}`}>
-      <div className="mb-4">
-        <label htmlFor="cep-input" className="block text-sm font-medium text-gray-700 mb-2">
+      <div className="mb-3 sm:mb-3 md:mb-4">
+        <label htmlFor="cep-input" className="block text-xs sm:text-xs md:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
           Calcular Frete
         </label>
-        
-        <div className="flex gap-2">
+
+        <div className="flex gap-1.5 sm:gap-2">
           <input
             id="cep-input"
             type="text"
@@ -182,64 +182,64 @@ export default function ShippingCalculator({
             onKeyDown={handleKeyDown}
             placeholder="00000-000"
             maxLength={9}
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent text-gray-900 placeholder:text-gray-400"
+            className="flex-1 min-w-0 px-2 sm:px-2.5 md:px-3 lg:px-2.5 xl:px-3 py-1.5 sm:py-2 md:py-2 lg:py-1.5 xl:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent text-gray-900 placeholder:text-gray-400 text-xs sm:text-sm md:text-sm lg:text-xs xl:text-sm"
             aria-label="Digite seu CEP"
             aria-describedby="cep-help"
           />
-          
+
           <button
             onClick={calculateShipping}
             disabled={loading || unmask(cep).length !== 8}
-            className="px-6 py-2 bg-secondary text-white rounded-lg hover:bg-secondary/90 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-medium"
+            className="px-2.5 sm:px-3 md:px-4 lg:px-3 xl:px-4 py-1.5 sm:py-2 md:py-2 lg:py-1.5 xl:py-2 bg-secondary text-white rounded-lg hover:bg-secondary/90 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors font-medium text-xs sm:text-sm md:text-sm lg:text-xs xl:text-sm whitespace-nowrap flex-shrink-0"
             aria-label="Calcular frete"
           >
             {loading ? 'Calculando...' : 'Calcular'}
           </button>
         </div>
-        
-        <p id="cep-help" className="text-xs text-gray-500 mt-1">
+
+        <p id="cep-help" className="text-[9px] sm:text-[10px] md:text-xs text-gray-500 mt-1">
           Digite seu CEP para calcular o frete
         </p>
       </div>
 
       {/* Results */}
       {result && (
-        <div className="mt-4">
+        <div className="mt-2 sm:mt-3 md:mt-3">
           {result.isValid ? (
-            <div className="bg-secondary/5 border border-secondary/20 rounded-lg p-4">
-              <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center">
-                  <svg 
-                    className="w-6 h-6 text-secondary" 
-                    fill="none" 
-                    stroke="currentColor" 
+            <div className="bg-secondary/5 border border-secondary/20 rounded-lg p-2.5 sm:p-3 md:p-3">
+              <div className="flex items-start gap-2">
+                <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-secondary/10 flex items-center justify-center">
+                  <svg
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-secondary"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" 
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
                 </div>
-                
-                <div className="flex-1">
-                  <p className="font-heading text-base text-foreground mb-1">
+
+                <div className="flex-1 min-w-0">
+                  <p className="font-heading text-xs sm:text-sm md:text-sm text-foreground mb-0.5 sm:mb-1">
                     {isFree ? (
                       <>Frete Grátis</>
                     ) : (
                       <>Frete: R$ {shippingCost.toFixed(2)}</>
                     )}
                   </p>
-                  
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Entrega em <strong>até 2 horas</strong> para {result.address?.city} - {result.address?.state}
+
+                  <p className="text-[10px] sm:text-xs md:text-xs text-muted-foreground mb-1 sm:mb-1.5 break-words leading-tight">
+                    Entrega em <strong>até 2 horas</strong> para {result.address?.city}
                   </p>
-                  
+
                   {!isFree && subtotal < shippingInfo.freeShippingThreshold && (
-                    <p className="text-xs text-secondary bg-secondary/10 rounded px-2 py-1 inline-block">
+                    <p className="text-[9px] sm:text-[10px] md:text-xs text-secondary bg-secondary/10 rounded px-1.5 py-0.5 sm:px-2 sm:py-1 inline-block break-words">
                       💡 Falta R$ {(shippingInfo.freeShippingThreshold - subtotal).toFixed(2)} para frete grátis!
                     </p>
                   )}
@@ -247,39 +247,39 @@ export default function ShippingCalculator({
               </div>
             </div>
           ) : (
-            <div className="bg-destructive/5 border border-destructive/20 rounded-lg p-4">
-              <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-destructive/10 flex items-center justify-center">
-                  <svg 
-                    className="w-6 h-6 text-destructive" 
-                    fill="none" 
-                    stroke="currentColor" 
+            <div className="bg-destructive/5 border border-destructive/20 rounded-lg p-2.5 sm:p-3 md:p-3">
+              <div className="flex items-start gap-2">
+                <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-destructive/10 flex items-center justify-center">
+                  <svg
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-destructive"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
                 </div>
-                
-                <div className="flex-1">
-                  <p className="font-heading text-base text-foreground mb-1">
+
+                <div className="flex-1 min-w-0">
+                  <p className="font-heading text-xs sm:text-sm md:text-sm text-foreground mb-0.5 sm:mb-1">
                     Área não atendida
                   </p>
-                  
-                  <p className="text-sm text-muted-foreground mb-2">
+
+                  <p className="text-[10px] sm:text-xs md:text-xs text-muted-foreground mb-1 sm:mb-1.5 break-words leading-tight">
                     {result.error}
                   </p>
-                  
-                  <div className="text-xs text-muted-foreground bg-muted rounded px-2 py-1">
-                    <p className="font-medium mb-1">Cidades atendidas:</p>
-                    <ul className="list-disc list-inside space-y-0.5">
+
+                  <div className="text-[10px] sm:text-xs text-muted-foreground bg-muted rounded px-1.5 py-1 sm:px-2 sm:py-1">
+                    <p className="font-medium mb-0.5 sm:mb-1">Cidades atendidas:</p>
+                    <ul className="list-disc list-inside space-y-0.5 text-[9px] sm:text-[10px]">
                       {shippingInfo.coveredCities.map((city) => (
-                        <li key={city}>{city}</li>
+                        <li key={city} className="break-words">{city}</li>
                       ))}
                     </ul>
                   </div>
@@ -292,31 +292,31 @@ export default function ShippingCalculator({
 
       {/* Info box */}
       {!result && (
-        <div className="mt-4 bg-card border border-border rounded-lg p-3">
-          <div className="flex items-start gap-2">
-            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center">
-              <svg 
-                className="w-5 h-5 text-secondary" 
-                fill="none" 
-                stroke="currentColor" 
+        <div className="mt-2 sm:mt-3 md:mt-3 bg-card border border-border rounded-lg p-2 sm:p-2.5 md:p-3">
+          <div className="flex items-start gap-1.5 sm:gap-2">
+            <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-secondary/10 flex items-center justify-center">
+              <svg
+                className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-secondary"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
             </div>
-            
-            <div className="text-sm text-foreground">
-              <p className="font-heading mb-1">Entrega Expressa</p>
-              <ul className="space-y-1 text-xs text-muted-foreground">
+
+            <div className="text-foreground min-w-0 flex-1">
+              <p className="font-heading mb-0.5 sm:mb-1 text-xs sm:text-sm md:text-sm">Entrega Expressa</p>
+              <ul className="space-y-0.5 text-[9px] sm:text-[10px] md:text-xs text-muted-foreground leading-tight">
                 <li>⚡ Entrega em até 2 horas</li>
                 <li>🎁 Frete grátis acima de R$ {shippingInfo.freeShippingThreshold.toFixed(2)}</li>
-                <li>📍 Atendemos: {shippingInfo.coveredCities.join(', ')}</li>
+                <li className="break-words">📍 {shippingInfo.coveredCities.join(', ')}</li>
               </ul>
             </div>
           </div>

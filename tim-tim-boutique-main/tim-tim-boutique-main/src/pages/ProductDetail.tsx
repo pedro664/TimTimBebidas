@@ -253,34 +253,31 @@ const ProductDetail = () => {
 
             <div className="grid grid-cols-2 gap-3 mb-4">
               <Button
-                size="lg"
                 onClick={handleAddToCart}
                 disabled={isOutOfStock || isAdding}
-                className={`gradient-wine text-white uppercase tracking-wider ${
+                className={`h-10 sm:h-11 md:h-11 lg:h-11 gradient-wine text-white uppercase tracking-wider text-xs sm:text-sm md:text-sm ${
                   isAdding ? 'animate-pulse' : 'hover:opacity-90'
                 }`}
                 aria-label={isOutOfStock ? "Produto fora de estoque" : "Adicionar ao carrinho"}
               >
-                <ShoppingCart className="mr-2 h-5 w-5" />
+                <ShoppingCart className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 {isOutOfStock ? 'Fora de Estoque' : isAdding ? 'Adicionando...' : 'Adicionar ao Carrinho'}
               </Button>
               
               <Button
-                size="lg"
                 variant="outline"
                 onClick={handleWhatsAppContact}
-                className="font-body uppercase tracking-wider"
+                className="h-10 sm:h-11 md:h-11 lg:h-11 font-body uppercase tracking-wider text-xs sm:text-sm md:text-sm"
               >
-                <MessageCircle className="mr-2 h-5 w-5" />
+                <MessageCircle className="mr-1.5 sm:mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 WhatsApp
               </Button>
             </div>
             
             <Link to="/carrinho">
               <Button
-                size="lg"
                 variant="secondary"
-                className="w-full font-body uppercase tracking-wider"
+                className="w-full h-10 sm:h-11 md:h-11 lg:h-11 font-body uppercase tracking-wider text-xs sm:text-sm md:text-sm"
               >
                 Ver Carrinho
               </Button>
